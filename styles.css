@@ -9,8 +9,11 @@
 /*
 Techniques used:
 
-- responsive layout, dependent on browser window width
-- flexbox
+- Responsive layout for desktop and mobile screen sizes
+- Flexbox
+- Accessibility-focused styling for smooth or non-smooth scrolling preference.
+- Harmonious visuals (theme-appropriate shapes and color scheme)
+- Some of my own extras added for additional spice (scroll-back-to-top button for mobile screen sizes, aesthetically pleasing section separators)
 - <code> and <pre> tags for code and preformatted terminal output, respectively.
 - Non-breaking space (&nbsp;) in appropriate places.
 */
