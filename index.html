@@ -1,0 +1,294 @@
+<!--
+  Author: O.A.
+  Date: 2025-01-01
+  
+  Certification project no. 3, "Technical Documentation Page", for FreeCodeCamp's Responsive Web Design course:
+  https://www.freecodecamp.org/learn/2022/responsive-web-design/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Technical Documentation Page</title>
+
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+
+  <body>
+    <nav id="navbar">
+      <header id="nav-header"><span id="tool_title">Nmap</span><hr>An Abridged Reference&nbsp;Guide</header>
+      
+      <div id="link-container">
+        <a href="#about_nmap" class="nav-link">About Nmap</a>
+        <a href="#options_summary" class="nav-link">Options Summary</a>
+        <a href="#target_specification" class="nav-link">Target Specification</a>
+        <a href="#port_scanning_basics" class="nav-link">Port Scanning Basics</a>
+        <a href="#further_reading" class="nav-link">Further Reading</a>
+      </div>
+    </nav>
+
+    <a href="#navbar" id="return_btn">
+      <span>↥</span>
+    </a>
+
+    <main id="main-doc">
+      <section class="main-section" id="about_nmap">
+        <header>
+          <h2>About Nmap</h2>
+        </header>
+        
+        <article>
+          <h3>Name</h3>
+            <p>nmap — Network exploration tool and security / port scanner</p>
+
+          <h3>Basic Syntax</h3>
+            <code>nmap [ &lt;Scan Type&gt; ...] [ &lt;Options&gt; ] { &lt;target specification&gt; }</code>
+
+          <h3>NMAP in a nutshell</h3>
+            <p>Nmap (“Network Mapper”) is an open source tool for network exploration and security auditing. It was designed to rapidly scan large networks, although it works fine against single hosts. Nmap uses raw IP packets in novel ways to determine...</p>
+            <ul>
+              <li>What hosts are available on the network.</li>
+              <li>What services (application name and version) those hosts are offering.</li>
+              <li>What operating systems (and OS versions) they are running.</li>
+              <li>What type of packet filters/firewalls are in use.</li>
+              <li>Many other characteristics.</li>
+            </ul>
+        </article>
+      </section>
+
+      <div class="section-separator">
+        <hr>
+        <img class="separator-img" src="https://static.vecteezy.com/system/resources/previews/020/914/999/large_2x/crt-monitor-icon-illustration-with-outline-for-design-element-clip-art-web-landing-page-sticker-banner-flat-cartoon-style-free-vector.jpg" alt=""/>
+        <hr>
+      </div>
+
+      <section class="main-section" id="options_summary">
+        <header>
+          <h2>Options Summary</h2>
+        </header>
+
+        <article>
+          <p>Nmap prints a list of basic options, when it is run without arguments like so: <code class="inline-code">nmap</code>.</p>
+          <p>This shortened, sample output is provided for quick reference only. In-depth documentation is found via the <a href="#further_reading">Further Reading</a> section further below.</p>
+          <pre>Nmap 7.93SVN ( https://nmap.org )
+  Usage: nmap [Scan Type(s)] [Options] {target specification}
+  TARGET SPECIFICATION:
+    Can pass hostnames, IP addresses, networks, etc.
+    Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+    -iL &lt;inputfilename&gt;: Input from list of hosts/networks
+    -iR &lt;num hosts&gt;: Choose random targets
+  HOST DISCOVERY:
+    -sL: List Scan - simply list targets to scan
+    -sn: Ping Scan - disable port scan
+    -Pn: Treat all hosts as online -- skip host discovery
+    -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+    -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  SCAN TECHNIQUES:
+    -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+    -sU: UDP Scan
+    -sN/sF/sX: TCP Null, FIN, and Xmas scans
+    --scanflags &lt;flags&gt;: Customize TCP scan flags
+    -sI &lt;zombie host[:probeport]&gt;: Idle scan
+  PORT SPECIFICATION AND SCAN ORDER:
+    -p &lt;port ranges&gt;: Only scan specified ports
+      Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+    --exclude-ports &lt;port ranges&gt;: Exclude the specified ports from scanning
+    -F: Fast mode - Scan fewer ports than the default scan
+    --top-ports &lt;number&gt;: Scan &lt;number&gt; most common ports
+  SERVICE/VERSION DETECTION:
+    -sV: Probe open ports to determine service/version info
+    --version-intensity &lt;level&gt;: Set from 0 (light) to 9 (try all probes)
+    --version-light: Limit to most likely probes (intensity 2)
+    --version-all: Try every single probe (intensity 9)
+  SCRIPT SCAN:
+    -sC: equivalent to --script=default
+    --script=&lt;Lua scripts&gt;: &lt;Lua scripts&gt; is a comma separated list of
+            directories, script-files or script-categories
+    --script-args=&lt;n1=v1,[n2=v2,...]&gt;: provide arguments to scripts
+  OS DETECTION:
+    -O: Enable OS detection
+    --osscan-limit: Limit OS detection to promising targets
+  TIMING AND PERFORMANCE:
+    Options which take &lt;time&gt; are in seconds, or append 'ms' (milliseconds),
+    's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+    -T&lt;0-5&gt;: Set timing template (higher is faster)
+  FIREWALL/IDS EVASION AND SPOOFING:
+    -f; --mtu &lt;val&gt;: fragment packets (optionally w/given MTU)
+    -D &lt;decoy1,decoy2[,ME],...&gt;: Cloak a scan with decoys
+    -S &lt;IP_Address&gt;: Spoof source address
+    -e &lt;iface&gt;: Use specified interface
+    -g/--source-port &lt;portnum&gt;: Use given port number
+  OUTPUT:
+    -oN/-oX/-oS/-oG &lt;file&gt;: Output scan in normal, XML, s|&lt;rIpt kIddi3,
+      and Grepable format, respectively, to the given filename.
+    -oA &lt;basename&gt;: Output in the three major formats at once
+  MISC:
+    -6: Enable IPv6 scanning
+    -A: Enable OS detection, version detection, script scanning, and traceroute
+    --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+    -V: Print version number
+    -h: Print this help summary page.
+  EXAMPLES:
+    nmap -v -A scanme.nmap.org
+    nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+    nmap -v -iR 10000 -Pn -p 80
+  SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES</pre>
+        </article>
+      </section>
+
+      <div class="section-separator">
+        <hr>
+        <img class="separator-img" src="https://static.vecteezy.com/system/resources/previews/020/914/999/large_2x/crt-monitor-icon-illustration-with-outline-for-design-element-clip-art-web-landing-page-sticker-banner-flat-cartoon-style-free-vector.jpg" alt=""/>
+        <hr>
+      </div>
+
+      <section class="main-section" id="target_specification">
+        <header>
+          <h2>Target Specification</h2>
+        </header>
+        
+        <article>
+          <p>Everything on the Nmap command-line that isn't an option (or option argument) is treated as a target host specification. The simplest case is to specify a target IP address or hostname for scanning.</p>
+          <p>When you provide a hostname as a target, Nmap resolves it using DNS to determine its IP address. If the name resolves to more than one IP address, only the first one will be scanned. Scan all resolved addresses using the <code class="inline-code">--resolve-all</code> option.</p>
+          <p>Targets are usually specified on the command line, but these options are available for controlling how the targets are selected:</p>
+
+          <ul>
+            <li>
+              <p>Input from list</p>
+              <code>-iL &lt;inputfilename&gt;</code>
+              <p>Reads target specifications from <code class="inline-code">&lt;inputfilename&gt;</code>. Useful when you have a long list of hosts to scan.</p>
+            </li>
+
+            <li>
+              <p>Choose random targets</p>
+              <code>-iR &lt;num hosts&gt;</code>
+              <p>Generates random target IP addresses to scan. Useful for Internet-wide surveys and other research. Undesirable IPs such as those in certain private, multicast, or unallocated address ranges are automatically skipped.</p>
+            </li>
+
+            <li>
+              <p>Exclude hosts/networks</p>
+              <code>--exclude &lt;host1&gt;[,&lt;host2&gt;[,...]]</code>
+              <p>Specifies a comma-separated list of targets to be excluded from the scan.</p>
+            </li>
+            
+            <li>
+              <p>No DNS resolution</p>
+              <code>-n</code>
+              <p>Never do reverse DNS resolution on the active IP addresses it finds.</p>
+            </li>
+
+            <li>
+              <p>DNS resolution for all targets</p>
+              <code>-R</code>
+              <p>Always do reverse DNS resolution on the target IP addresses.</p>
+            </li>
+
+            <li>
+              <p>Scan each resolved address</p>
+              <code>--resolve-all</code>
+            </li>
+
+            <li>
+              <p>Scan each address only once</p>
+              <code>--unique</code>
+            </li>
+
+            <li>
+              <p>Use system DNS resolver</p>
+              <code>--system-dns</code>
+            </li>
+
+            <li>
+              <p>Servers to use for reverse DNS queries</p>
+              <code>--dns-servers &lt;server1&gt;[,&lt;server2&gt;[,...]]</code>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="section-separator">
+        <hr>
+        <img class="separator-img" src="https://static.vecteezy.com/system/resources/previews/020/914/999/large_2x/crt-monitor-icon-illustration-with-outline-for-design-element-clip-art-web-landing-page-sticker-banner-flat-cartoon-style-free-vector.jpg" alt=""/>
+        <hr>
+      </div>
+
+      <section class="main-section" id="port_scanning_basics">
+        <header>
+          <h2>Port Scanning Basics</h2>
+        </header>
+        <article>
+          <p>Nmap's core functionality is port scanning. <code class="inline-code">nmap &lt;target&gt;</code> by defauly scans 1,000 TCP ports on the <code class="inline-code">&lt;target&gt;</code> host.</p>
+          <p>Nmap can perceive ports in the following six states: <code class="inline-code">open, closed, filtered, unfiltered, open|filtered,</code> or <code class="inline-code">closed|filtered</code>.</p>
+          
+          <p>The six port states perceived by Nmap:</p>
+
+          <ul>
+            <li>
+              <code>open</code>
+              <p>An application is actively accepting TCP connections, UDP datagrams or SCTP associations on this port. </p>
+            </li>
+
+            <li>
+              <code>closed</code>
+              <p>A closed port is accessible (it receives and responds to Nmap probe packets), but there is no application listening on it.</p>
+            </li>
+
+            <li>
+              <code>filtered</code>
+              <p>Nmap cannot determine whether the port is open because packet filtering prevents its probes from reaching the port.</p>
+            </li>
+
+            <li>
+              <code>unfiltered</code>
+              <p>The unfiltered state means that a port is accessible, but Nmap is unable to determine whether it is open or closed. Only the ACK scan, which is used to map firewall rulesets, classifies ports into this state.</p>
+            </li>
+
+            <li>
+              <code>open|filtered</code>
+              <p>Nmap places ports in this state when it is unable to determine whether a port is open or filtered. This occurs for scan types in which open ports give no response.</p>
+            </li>
+
+            <li>
+              <code>closed|filtered</code>
+              <p>This state is used when Nmap is unable to determine whether a port is closed or filtered. It is only used for the IP ID idle scan.</p>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="section-separator">
+        <hr>
+        <img class="separator-img" src="https://static.vecteezy.com/system/resources/previews/020/914/999/large_2x/crt-monitor-icon-illustration-with-outline-for-design-element-clip-art-web-landing-page-sticker-banner-flat-cartoon-style-free-vector.jpg" alt=""/>
+        <hr>
+      </div>
+
+      <section class="main-section" id="further_reading">
+        <header>
+          <h2>Further Reading</h2>
+        </header>
+        
+        <article>
+          <p>This documentation information is adapted from <a href="https://nmap.org/book/man.html" target="_blank">the online Nmap Reference Guide.</a></p>
+        </article>
+      </section>
+
+      <footer id="credits">
+        <h2>Credits</h2>
+
+        <p>Page built by O.A. ― "Technical Documentation Page", certification project no.&nbsp;3 for <a href="https://www.freecodecamp.org/learn/2022/responsive-web-design/" target="_blank">FreeCodeCamp's Responsive Web Design course.</a></p>
+        <address>
+          My links:<br>
+          <a href="https://github.com/green-blue-couchette" target="_blank">See my GitHub projects</a>.
+          </address>
+          
+        <address>
+          <a href="https://linkedin.com/in/oliver-antal-hu" target="_blank">See my LinkedIn profile</a>.
+          </address>
+
+        <p>Image credits: CRT Monitor Icon by <a href="https://www.vecteezy.com/vector-art/20914999-crt-monitor-vector-icon-illustration-with-outline-for-design-element-clip-art-web-landing-page-sticker-banner-flat-cartoon-style" target="_blank">khairuman at vecteezy.com</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

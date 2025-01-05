@@ -1,0 +1,270 @@
+/*
+  Author: O.A.
+  Date: 2025-01-01
+  
+  Certification project no 3, "Technical Documentation Page", for FreeCodeCamp's Responsive Web Design course:
+  https://www.freecodecamp.org/learn/2022/responsive-web-design/
+*/
+
+/*
+Techniques used:
+
+- responsive layout, dependent on browser window width
+- flexbox
+- <code> and <pre> tags for code and preformatted terminal output, respectively.
+- Non-breaking space (&nbsp;) in appropriate places.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+#return_btn {
+  display: none;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+
+  display: flex;
+  flex-direction: row;
+
+  font-family: Calibri, sans-serif;
+  font-size: 16px; /*Explicitly define the font size of the root element. 16px is the default. */
+}
+
+#navbar {
+  width: 350px;
+  height: 100vh;
+
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  
+  background-color: darkgreen;
+  border-right: 5px solid black;
+
+  font-weight: bolder;
+  text-align: center;
+}
+
+#tool_title {
+  font-size: 2rem;
+}
+
+#navbar header, .nav-link {
+  margin: 10px 0;
+}
+
+#navbar header {
+  background-color: black;
+  padding: 10px;
+  
+  font-size: 1.2rem;
+  color: green;
+}
+
+.nav-link{
+  color: green;
+  background-color: black;
+  padding: 10px 0;
+  border: 3px solid gainsboro;
+
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.nav-link:hover{
+  color: green;
+  background-color: gainsboro;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+#navbar header hr {
+  height: 5px;
+  width: 115px;
+  border: 0;
+  background-color: gainsboro;
+}
+
+#link-container, main {
+  padding: 5px 20px;
+  height: 100%;
+}
+
+#link-container {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+main {
+  margin-left: 350px;
+  width: calc(100% - 350px);
+}
+
+/* Style this to resemble what <header> text would look like without an <h2> in it. */
+section header h2 {
+  font-weight: normal;
+  font-size: 2.5rem;
+  margin: 5px 0;
+}
+
+.section-separator {
+  max-width: auto;
+  height: 75px;  
+  padding: 5px 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section-separator hr {
+  background-color: black;
+  width: 100%;
+  height: 5px;
+  
+  border: none;
+}
+
+.separator-img {
+  height: 100%;
+  margin: 0 30px;
+  width: auto;
+  filter: grayscale(100%);
+}
+
+code, pre {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  
+  color: lightgreen;
+  background-color: black;
+  text-align: left;
+  font-family: Consolas, monospace;
+}
+
+pre {
+  overflow: scroll;
+}
+
+.inline-code {
+  display: inline;
+  width: unset;
+  padding: 3px 7px;
+}
+
+/* I would try CSS child rules here, but the FreeCodeCamp interpreter doesn't seem to support that...
+Inspiration: https://www.w3schools.com/cssref/sel_nesting.php
+*/
+#target_specification ul p, #port_scanning_basics ul p {
+  margin: 5px 0;
+}
+
+#target_specification li, #port_scanning_basics li {
+  margin-bottom: 30px;
+}
+
+footer {
+  padding: 10px 0;
+  border-top: 5px solid black;
+}
+
+a {
+  color: darkgreen;
+}
+
+a:hover {
+  color: black;
+  cursor: pointer;
+}
+
+a:visited {
+  color: rgb(97, 97, 97);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Responsive design: */
+/* If page is just a little narrow, squish width of navbar. */
+@media (min-width: 750px) and (max-width: 1000px) {
+  #navbar{
+    width: 250px;
+  }
+
+  main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+
+/* If screen is narrow, put navbar to the top and show a return button (scroll-back-to-top button). */
+@media (max-width: 750px) {
+  html:not(data-scroll='0') {
+    background-color: pink;
+}
+
+  body {
+    flex-direction: column;
+  }
+
+  #navbar{
+    width: 100%;
+    height: 35vh;
+    position: unset; /* Defaults to position: static */
+    border: unset;
+    border-bottom: 5px solid black;
+  }
+
+  #navbar header{
+    margin: 0;
+    padding: 3px 0;
+  }
+  .nav-link {
+    padding: 5px 0;
+    border: 3px solid gainsboro;
+
+    font-size: 1.25rem;
+  }
+
+  main {
+    width: 100%;
+    margin-left: unset;
+  }
+
+/* A little extra that wasn't required for the certification project.
+I tried making this appear from the bottom only when the user scrolls down a little, but I haven't figured it out yet. I'm ignoring that for now.
+*/
+  #return_btn {
+    display: initial;
+    position: fixed;
+    top: calc(100vh - 70px);
+    left: calc(100vw - 70px);
+    z-index: 1;
+    
+    color: darkgreen;
+    background-color: gainsboro;
+    
+    height: 70px;
+    width: 70px;
+    padding: 4px 0; /* Some botchy centering. */
+
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  #return_btn:hover {
+    background-color: rgb(160, 160, 160);
+    color: black;
+    cursor: pointer;
+  }
+}
